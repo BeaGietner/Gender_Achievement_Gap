@@ -1,0 +1,35 @@
+	(1)	(2)	(3)	(4)
+VARIABLES	overall	endowments	coefficients	interaction
+				
+cog_naming_total_w3		0.00158	0.460**	-0.00370
+		(0.00316)	(0.218)	(0.00695)
+cog_maths_total_w3		-0.123***	0.0849	-0.0134
+		(0.0245)	(0.145)	(0.0230)
+cog_vocabulary_w3		-0.00738	0.0379	-0.000558
+		(0.0104)	(0.164)	(0.00253)
+sdq_emo_res_pcg_w3		-0.0337	-0.0728	0.00714
+		(0.0230)	(0.278)	(0.0273)
+sdq_good_conduct_pcg_w3		-0.00215	-0.391	0.00303
+		(0.00329)	(0.437)	(0.00454)
+sdq_focus_behav_pcg_w3		0.0557***	-0.123	-0.0124
+		(0.0175)	(0.220)	(0.0222)
+sdq_posi_peer_pcg_w3		0.00240	0.00372	6.09e-05
+		(0.00443)	(0.363)	(0.00595)
+group_1	-0.0309			
+	(0.0405)			
+group_2	0.0328			
+	(0.0433)			
+difference	-0.0637			
+	(0.0593)			
+endowments	-0.107**			
+	(0.0438)			
+coefficients	0.0630			
+	(0.0603)			
+interaction	-0.0198			
+	(0.0461)			
+Constant			0.0636	
+			(0.548)	
+				
+Observations	1,152	1,152	1,152	1,152
+Standard errors in parentheses				
+*** p<0.01, ** p<0.05, * p<0.1				

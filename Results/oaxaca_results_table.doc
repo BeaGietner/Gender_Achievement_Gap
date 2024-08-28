@@ -1,0 +1,55 @@
+{\rtf1\fs24
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx2592\clbrdrt\brdrs\cellx4032\clbrdrt\brdrs\cellx5616\clbrdrt\brdrs\cellx7488\clbrdrt\brdrs\cellx9216
+\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\qc (4)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx2592\cellx4032\cellx5616\cellx7488\cellx9216
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx2592\clbrdrb\brdrs\cellx4032\clbrdrb\brdrs\cellx5616\clbrdrb\brdrs\cellx7488\clbrdrb\brdrs\cellx9216
+\ql VARIABLES\cell\qc overall\cell\qc endowments\cell\qc coefficients\cell\qc interaction\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx2592\cellx4032\cellx5616\cellx7488\cellx9216
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Drum_VR_W2_p\cell\qc \cell\qc -0.0549***\cell\qc -0.00973\cell\qc 0.000553\cell\row
+\ql \cell\qc \cell\qc (0.0116)\cell\qc (0.152)\cell\qc (0.00864)\cell\row
+\ql Drum_NA_W2_p\cell\qc \cell\qc -0.187***\cell\qc -0.115\cell\qc 0.0132\cell\row
+\ql \cell\qc \cell\qc (0.0222)\cell\qc (0.133)\cell\qc (0.0153)\cell\row
+\ql BAS_TS_Mat_W2\cell\qc \cell\qc -0.0145**\cell\qc 0.0446\cell\qc -0.000457\cell\row
+\ql \cell\qc \cell\qc (0.00702)\cell\qc (0.298)\cell\qc (0.00307)\cell\row
+\ql SDQ_emot_PCG_W2\cell\qc \cell\qc -0.0151*\cell\qc -0.109\cell\qc 0.00566\cell\row
+\ql \cell\qc \cell\qc (0.00794)\cell\qc (0.206)\cell\qc (0.0107)\cell\row
+\ql SDQ_cond_PCG_W2\cell\qc \cell\qc 0.000752\cell\qc 0.706**\cell\qc 0.00312\cell\row
+\ql \cell\qc \cell\qc (0.00120)\cell\qc (0.318)\cell\qc (0.00348)\cell\row
+\ql SDQ_hyper_PCG_W2\cell\qc \cell\qc 0.0515***\cell\qc 0.191\cell\qc 0.0158\cell\row
+\ql \cell\qc \cell\qc (0.0101)\cell\qc (0.153)\cell\qc (0.0128)\cell\row
+\ql SDQ_peer_PCG_W2\cell\qc \cell\qc 0.000247\cell\qc -0.117\cell\qc -0.00141\cell\row
+\ql \cell\qc \cell\qc (0.00219)\cell\qc (0.271)\cell\qc (0.00334)\cell\row
+\ql PCG_Educ_W2\cell\qc \cell\qc -0.0113**\cell\qc 0.0572\cell\qc -0.00141\cell\row
+\ql \cell\qc \cell\qc (0.00517)\cell\qc (0.150)\cell\qc (0.00374)\cell\row
+\ql SCG_Educ_W2\cell\qc \cell\qc -0.0120**\cell\qc 0.0404\cell\qc -0.00135\cell\row
+\ql \cell\qc \cell\qc (0.00504)\cell\qc (0.132)\cell\qc (0.00444)\cell\row
+\ql Income_equi_quint\cell\qc \cell\qc -0.000874\cell\qc 0.0309\cell\qc -9.52e-05\cell\row
+\ql \cell\qc \cell\qc (0.00364)\cell\qc (0.112)\cell\qc (0.000525)\cell\row
+\ql DEIS_binary_W2\cell\qc \cell\qc 0.00457\cell\qc 0.00151\cell\qc -0.000182\cell\row
+\ql \cell\qc \cell\qc (0.00358)\cell\qc (0.0150)\cell\qc (0.00181)\cell\row
+\ql Fee_paying_W2\cell\qc \cell\qc -0.00551*\cell\qc -0.0231\cell\qc 0.00496\cell\row
+\ql \cell\qc \cell\qc (0.00310)\cell\qc (0.0155)\cell\qc (0.00386)\cell\row
+\ql Mixed\cell\qc \cell\qc 0.000660\cell\qc -0.0663\cell\qc 0.00565\cell\row
+\ql \cell\qc \cell\qc (0.00263)\cell\qc (0.0444)\cell\qc (0.00425)\cell\row
+\ql group_1\cell\qc 9.685***\cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc (0.0391)\cell\qc \cell\qc \cell\qc \cell\row
+\ql group_2\cell\qc 9.803***\cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc (0.0382)\cell\qc \cell\qc \cell\qc \cell\row
+\ql difference\cell\qc -0.118**\cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc (0.0547)\cell\qc \cell\qc \cell\qc \cell\row
+\ql endowments\cell\qc -0.244***\cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc (0.0419)\cell\qc \cell\qc \cell\qc \cell\row
+\ql coefficients\cell\qc 0.0819*\cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc (0.0423)\cell\qc \cell\qc \cell\qc \cell\row
+\ql interaction\cell\qc 0.0440*\cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc (0.0245)\cell\qc \cell\qc \cell\qc \cell\row
+\ql Constant\cell\qc \cell\qc \cell\qc -0.549\cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc (0.441)\cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx2592\clbrdrb\brdrs\cellx4032\clbrdrb\brdrs\cellx5616\clbrdrb\brdrs\cellx7488\clbrdrb\brdrs\cellx9216
+\ql Observations\cell\qc 3,783\cell\qc 3,783\cell\qc 3,783\cell\qc 3,783\cell\row
+\pard\qc
+Standard errors in parentheses\par
+*** p<0.01, ** p<0.05, * p<0.1\par
+}
