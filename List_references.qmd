@@ -1,0 +1,122 @@
+---
+title: "References_Gender_Gap"
+format: html
+editor: visual
+---
+
+Altonji, J. G., & Blank, R. M. (1999)
+"Race and gender in the labor market."
+Handbook of Labor Economics, 3, 3143–3259.
+
+Beilock, S. L., Gunderson, E. A., Ramirez, G., & Levine, S. C. (2010)
+"Female teachers’ math anxiety affects girls’ math achievement."
+Proceedings of the National Academy of Sciences, 107(5), 1860–1863.
+
+Blau, F. D., & Kahn, L. M. (2017)
+"The gender wage gap: Extent, trends, and explanations."
+Journal of Economic Literature, 55(3), 789–865.
+
+Blickenstaff, J. C. (2005)
+"Women and science careers: Leaky pipeline or gender filter?"
+Gender and Education, 17(4), 369–386.
+
+Blinder, A. S. (1973)
+"Wage discrimination: Reduced form and structural estimates."
+Journal of Human Resources, 436–455.
+
+Ceci, S. J., Williams, W. M., & Barnett, S. M. (2009)
+"Women’s underrepresentation in science: Sociocultural and biological considerations."
+Psychological Bulletin, 135(2), 218.
+
+Cunha, F., & Heckman, J. (2007)
+"The technology of skill formation."
+American Economic Review, 97(2), 31–47.
+
+Davis-Kean, P. E. (2005)
+"The influence of parent education and family income on child achievement: The indirect role of parental expectations and the home environment."
+Journal of Family Psychology, 19(2), 294.
+
+Deming, D. J. (2017)
+"The growing importance of social skills in the labor market."
+The Quarterly Journal of Economics, 132(4), 1593–1640.
+
+Fortin, N. M., Oreopoulos, P., & Phipps, S. (2015)
+"Leaving boys behind: Gender disparities in high academic achievement."
+Journal of Human Resources, 50(3), 549–579.
+
+Guiso, L., Monte, F., Sapienza, P., & Zingales, L. (2008)
+"Culture, gender, and math."
+Science, 320(5880), 1164–1165.
+
+Heckman, J. J. (2006)
+"Skill formation and the economics of investing in disadvantaged children."
+Science, 312(5782), 1900–1902.
+
+Huang, C. (2013)
+"Gender differences in academic self-efficacy: A meta-analysis."
+European Journal of Psychology of Education, 28(1), 1–35.
+
+Jann, B. (2008)
+"The Blinder–Oaxaca decomposition for linear regression models."
+The Stata Journal, 8(4), 453–479.
+
+Jones, F. L., & Kelley, J. (1984)
+"Decomposing differences between groups: A cautionary note on measuring discrimination."
+Sociological Methods & Research, 12(3), 323–343.
+
+Kitagawa, E. M. (1955)
+"Components of a difference between two rates."
+Journal of the American Statistical Association, 50(272), 1168–1194.
+
+Levine, S. C., Vasilyeva, M., Lourenco, S. F., Newcombe, N. S., & Huttenlocher, J. (2005)
+"Socioeconomic status modifies the sex difference in spatial skill."
+Psychological Science, 16(11), 841–845.
+
+Niederle, M., & Vesterlund, L. (2010)
+"Explaining the gender gap in math test scores: The role of competition."
+Journal of Economic Perspectives, 24(2), 129–144.
+
+Oaxaca, R. (1973)
+"Male-female wage differentials in urban labor markets."
+International Economic Review, 693–709.
+
+Phelps, E. S. (1972)
+"The statistical theory of racism and sexism."
+The American Economic Review, 62(4), 659–661.
+
+Popli, G. K. (2013)
+"Gender wage differentials in México: A distributional approach."
+Journal of the Royal Statistical Society Series A: Statistics in Society, 176(2), 295–319.
+
+Rosen, S. (1978)
+"Substitution and division of labour."
+Economica, 45(179), 235–250.
+
+Sacerdote, B. (2011)
+"Nature and nurture effects on children’s outcomes: What have we learned from studies of twins and adoptees."
+Handbook of Social Economics, 1, 1–30.
+
+Sirin, S. R. (2005)
+"Socioeconomic status and academic achievement: A meta-analytic review of research."
+Review of Educational Research, 75(3), 417–453.
+
+Spencer, S. J., Steele, C. M., & Quinn, D. M. (1999)
+"Stereotype threat and women’s math performance."
+Journal of Experimental Social Psychology, 35(1), 4–28.
+
+"Conscientiousness as a Predictor of the Gender Gap in Academic Achievement"
+van der Linden, D., Dunkel, C. S., & Borghans, L.
+
+"Gender Differences in the Skill Content of Jobs"
+Bublitz, E., & Noseleit, F.
+
+"The Long-Term Effects of Teachers' Gender Stereotypes"
+Martinez, F.
+
+"Non-Cognitive Skills and the Gender Disparities in Test Scores and Teacher Assessments"
+Cornwell, C., Mustard, D. B., & Van Parys, J.
+
+"Do Non-Cognitive Skills Explain the Gender Gap in Educational Achievement?"
+Segal, C.
+
+
