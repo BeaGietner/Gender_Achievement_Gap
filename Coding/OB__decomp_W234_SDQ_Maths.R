@@ -18,6 +18,8 @@ Oaxaca_Maths_SDQ_W2 <- oaxaca(
   R = 100  # Number of bootstrap replications
 )
 
+
+summary(production_data)
 print(Oaxaca_Maths_SDQ_W2)
 
 

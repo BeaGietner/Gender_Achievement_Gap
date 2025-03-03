@@ -1,13 +1,12 @@
 # Load necessary libraries
 library(tidyverse)
 
-# Reload production_data (assuming it's already in your workspace)
 ml_data <- production_data %>%
   select(
     ID, Maths_points, Gender_factor,  # Outcomes & Demographics
     Drum_VR_W2_p, Drum_NA_W2_p, BAS_TS_Mat_W2,  # Cognitive (raw)
     SDQ_emot_PCG_W2, SDQ_cond_PCG_W2, SDQ_hyper_PCG_W2, SDQ_peer_PCG_W2,  # Noncognitive (raw)
-    PCG_Educ_W2, SCG_Educ_W2, Income_equi,  # Socioeconomic (raw)
+    PCG_Educ_W2, SCG_Educ_W2, Income_equi_quin,  # Socioeconomic (raw)
     DEIS_binary_W2, Fee_paying_W2, Mixed  # School indicators (if needed later)
   )
 
@@ -58,11 +57,13 @@ ml_data_complete <- ml_data_complete %>%
 sum(is.na(ml_data_complete)) # Should return 0
 dim(ml_data_complete) # Check how many rows remain after dropping NAs
 
+library(dplyr)
+
 # Define percentiles for classification
 p25 <- function(x) quantile(x, 0.25, na.rm = TRUE)  # 25th percentile
 p75 <- function(x) quantile(x, 0.75, na.rm = TRUE)  # 75th percentile
 
-# Calculate new cutoffs
+# Calculate new cutoffs (as named vector for easier access)
 sdq_cutoffs <- ml_data_complete %>%
   summarise(
     SDQ_emot_75 = p75(SDQ_emot_PCG_W2),
@@ -73,25 +74,25 @@ sdq_cutoffs <- ml_data_complete %>%
     SDQ_cond_25 = p25(SDQ_cond_PCG_W2),
     SDQ_hyper_25 = p25(SDQ_hyper_PCG_W2),
     SDQ_peer_25 = p25(SDQ_peer_PCG_W2)
-  )
+  ) %>% unlist()
 
 
 # Assign risk groups based on multiple high/low SDQ scores
 ml_data_complete <- ml_data_complete %>%
   mutate(
-    high_sdq_count = (SDQ_emot_PCG_W2 >= sdq_cutoffs$SDQ_emot_75) +
-      (SDQ_cond_PCG_W2 >= sdq_cutoffs$SDQ_cond_75) +
-      (SDQ_hyper_PCG_W2 >= sdq_cutoffs$SDQ_hyper_75) +
-      (SDQ_peer_PCG_W2 >= sdq_cutoffs$SDQ_peer_75),
+    high_sdq_count = (SDQ_emot_PCG_W2 >= sdq_cutoffs["SDQ_emot_75"]) +
+      (SDQ_cond_PCG_W2 >= sdq_cutoffs["SDQ_cond_75"]) +
+      (SDQ_hyper_PCG_W2 >= sdq_cutoffs["SDQ_hyper_75"]) +
+      (SDQ_peer_PCG_W2 >= sdq_cutoffs["SDQ_peer_75"]),
     
-    low_sdq_count = (SDQ_emot_PCG_W2 <= sdq_cutoffs$SDQ_emot_25) +
-      (SDQ_cond_PCG_W2 <= sdq_cutoffs$SDQ_cond_25) +
-      (SDQ_hyper_PCG_W2 <= sdq_cutoffs$SDQ_hyper_25) +
-      (SDQ_peer_PCG_W2 <= sdq_cutoffs$SDQ_peer_25),
+    low_sdq_count = (SDQ_emot_PCG_W2 <= sdq_cutoffs["SDQ_emot_25"]) +
+      (SDQ_cond_PCG_W2 <= sdq_cutoffs["SDQ_cond_25"]) +
+      (SDQ_hyper_PCG_W2 <= sdq_cutoffs["SDQ_hyper_25"]) +
+      (SDQ_peer_PCG_W2 <= sdq_cutoffs["SDQ_peer_25"]),
     
     risk_group = case_when(
-      high_sdq_count >= 2 ~ "High Risk",     # Keeping this as is because higher SDQ = more problems
-      low_sdq_count >= 2 ~ "Low Risk",
+      high_sdq_count >= 2 ~ "High Risk",
+      low_sdq_count >= 2 ~ "Low Risk",  # Fixed to >= 2
       TRUE ~ "Moderate Risk"
     )
   )
@@ -102,13 +103,33 @@ table(ml_data_complete$risk_group)
 # Calculate math percentiles and resilience in one step (across ALL students)
 ml_data_complete <- ml_data_complete %>%
   mutate(
-    maths_percentile = percent_rank(Maths_points),  # Calculate across all students
+    Maths_points_jittered = Maths_points + runif(n(), min = -0.1, max = 0.1),  
+    maths_percentile = dplyr::percent_rank(Maths_points_jittered)  # Use jittered values
+  )
+unique(ml_data_complete$maths_percentile)
+
+
+ml_data_complete <- ml_data_complete %>%
+  mutate(
+    maths_percentile = dplyr::percent_rank(Maths_points_jittered),  # Use jittered values
     resilience = case_when(
-      risk_group %in% c("High Risk", "Moderate Risk") & maths_percentile >= 0.70 ~ "Resilient",
-      risk_group %in% c("High Risk", "Moderate Risk") & maths_percentile < 0.70 ~ "Non-Resilient",
+      risk_group %in% c("High Risk", "Moderate Risk") & maths_percentile >= 0.60 ~ "Resilient",
+      risk_group %in% c("High Risk", "Moderate Risk") & maths_percentile < 0.60 ~ "Non-Resilient",
       risk_group == "Low Risk" ~ "Not Applicable"
     )
   )
+
+# Re-check the percentile distribution
+ml_data_complete %>%
+  summarise(
+    below_50 = sum(maths_percentile < 0.50),
+    between_50_60 = sum(maths_percentile >= 0.50 & maths_percentile < 0.60),
+    between_60_70 = sum(maths_percentile >= 0.60 & maths_percentile < 0.70),
+    above_70 = sum(maths_percentile >= 0.70)
+  )
+
+# Confirm new unique percentiles
+unique(ml_data_complete$maths_percentile)
 
 # Check risk group distribution
 table(ml_data_complete$risk_group)
@@ -121,8 +142,10 @@ ml_data_complete %>%
     sd_score = sd(Maths_points)
   )
 
-# Check resilience distribution
-table(ml_data_complete$resilience, ml_data_complete$risk_group)
+
+
+# Check resilience distribution (ensuring all categories appear)
+addmargins(table(ml_data_complete$resilience, ml_data_complete$risk_group))
 
 # Assign risk groups based on multiple high/low SDQ scores
 # ml_data_complete <- ml_data_complete %>%
@@ -877,6 +900,7 @@ ggplot(importance_df, aes(x = reorder(Feature, MeanDecreaseGini), y = MeanDecrea
     y = "Relative Importance"
   )
 
+
 # SALVING THE DATASETS ------------------------------------------------------------
 write.csv(ml_data, "ml_data.csv", row.names = FALSE)
-write.csv(ml_data_complete, "ml_data_complete.csv", row.names = FALSE)
+write.csv(ml_data_complete, "ml_data_complete_60th.csv", row.names = FALSE)

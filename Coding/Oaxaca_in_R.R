@@ -1,12 +1,4 @@
-# First create binary gender variable (1 for Male, 0 for Female)
-production_data <- production_data %>%
-  mutate(gender_binary = case_when(
-    Gender_factor == "Male" ~ 1,
-    Gender_factor == "Female" ~ 0,
-    TRUE ~ NA_real_
-  ))
-
-# Now run the Oaxaca-Blinder decomposition
+# TIPI Oaxaca-Blinder decomposition
 Oaxaca_Maths_TIPI <- oaxaca(
   Maths_points ~ 
     Drum_VR_W2_p + Drum_NA_W2_p + BAS_TS_Mat_W2 +                            # Cognitive
@@ -15,7 +7,7 @@ Oaxaca_Maths_TIPI <- oaxaca(
     PCG_Educ_W2 + SCG_Educ_W2 + Income_equi + 
     DEIS_binary_W2 + Fee_paying_W2 + Mixed |                                  # Socioeconomic & School
     gender_binary,
-  data = na.omit(production_data[, c("Maths_points", 
+  data = na.omit(dataset_chapter_3[, c("Maths_points", 
                                      "Drum_VR_W2_p", "Drum_NA_W2_p", "BAS_TS_Mat_W2",
                                      "Agreeable_W2_PCG", "Emo_Stability_W2_PCG", "Conscientious_W2_PCG", 
                                      "Extravert_W2_PCG", "Openness_W2_PCG",
@@ -27,19 +19,7 @@ Oaxaca_Maths_TIPI <- oaxaca(
 
 print(Oaxaca_Maths_TIPI)
 
-
-library(oaxaca)
-library(dplyr)
-
-# First create binary gender variable (1 for Male, 0 for Female)
-ml_data_complete <- ml_data_complete %>%
-  mutate(gender_binary = case_when(
-    Gender_factor == "Male" ~ 1,
-    Gender_factor == "Female" ~ 0,
-    TRUE ~ NA_real_
-  ))
-
-# Run Oaxaca-Blinder decomposition with SDQ variables
+# Oaxaca-Blinder decomposition with SDQ variables
 Oaxaca_Maths_SDQ <- oaxaca(
   Maths_points ~ 
     Drum_VR_W2_p + Drum_NA_W2_p + BAS_TS_Mat_W2 +                            # Cognitive
@@ -47,7 +27,7 @@ Oaxaca_Maths_SDQ <- oaxaca(
     PCG_Educ_W2 + SCG_Educ_W2 + Income_equi + 
     DEIS_binary_W2 + Fee_paying_W2 + Mixed |                                  # Socioeconomic & School
     gender_binary,
-  data = na.omit(ml_data_complete[, c("Maths_points", 
+  data = na.omit(dataset_chapter_3[, c("Maths_points", 
                                       "Drum_VR_W2_p", "Drum_NA_W2_p", "BAS_TS_Mat_W2",
                                       "SDQ_emot_PCG_W2", "SDQ_cond_PCG_W2", "SDQ_hyper_PCG_W2", "SDQ_peer_PCG_W2",
                                       "PCG_Educ_W2", "SCG_Educ_W2", "Income_equi",
@@ -60,7 +40,7 @@ print(Oaxaca_Maths_SDQ)
 
 
 # Check mean hyperactivity scores by gender
-ml_data_complete %>%
+dataset_chapter_3 %>%
   group_by(Gender_factor) %>%
   summarise(
     mean_hyperactivity = mean(SDQ_hyper_PCG_W2, na.rm = TRUE),

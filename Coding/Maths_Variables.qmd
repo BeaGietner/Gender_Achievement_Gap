@@ -1,0 +1,71 @@
+---
+title: "Maths_Variables"
+format: html
+editor: visual
+---
+
+
+# Wave 1:
+## Maths Variables
+Variable name: Question, Label Options
+
+MMJ13 (primary caregiver): How well SC doing in mathematics relative to other children of his/her age, 1 Poor 2 Below Average 3 Average 4 Above Average 5 Excellent
+
+CQ3a (study child): Do you like Maths? 1 Always like it 2 Sometimes like it 3 Never like it
+
+TC10d (teacher): 10d. Academic performance - mathematics, 1 Below average 2 Average 3 Above Average
+TC10g (teacher): 10g. Academic performance - problem solving, 1 Below average 2 Average 3 Above Average
+TC10e (teacher): 10e. Academic performance - imagination/creativity, 1 Below average 2 Average 3 Above Average
+TC10c (teacher): 10c. Academic performance - comprehension, 1 Below average 2 Average 3 Above Average
+
+mathclass: Drumcondra Maths test - class level sat
+mathatt: Drumcondra Maths test - number of questions attempted
+mathcorr: Drumcondra Maths test - number of correct answers
+mathpct: Drumcondra Maths test - percentage correct
+mathsls: Drumcondra Maths test - Logit score
+mathslsse: Drumcondra Maths test - Logit score standard error
+
+## SDQ Variables:
+Respondent (about the study child): Variable name
+
+Teacher: TCSDQemot, TCSDQcon, TCSDQhyp, TCSDQpeer
+Primary caregiver: MMH2_SDQemot, MMH2_SDQcond, MMH2_SDQhyper, MMH2_SDQpeer
+
+# Wave 2:
+## Maths Variables
+
+Variable name: Question, 
+
+Study-child questionnaire:
+cq2q7a: Please indicate if you find Maths Difficult, OK, Not Difficult or You Don’t Take that Subject, 1 Difficult 2 OK 3 Not difficult 4 Don t take
+cq2q8a: Please indicate if you find Maths Interesting, OK, Not interesting or you don’t take that subject, 1 Interesting 2 OK 3 Not interesting 4 Don t take
+cq2q2c: Please tick which level of Maths you are studying, 1 Higher 2 Ordinary 3 Foundation 4 Not sure yet
+
+Tests:
+napct Drumcondra Numerical Ability test - percentage correct
+nals Drumcondra Numerical Ability test - Logit score
+nalsse Drumcondra Numerical Ability test - Logit score standard error
+matabscore BAS - total ability score for matrices
+matage BAS - matrices age equivalent
+
+## SDQ Variables
+Respondent (about the study child): Variable name
+
+Primary caregiver: w2pcd2_sdqemot, w2pcd2_sdqcond, w2pcd2_sdqhyper, w2pcd2_sdqpeer
+
+# Wave 3
+## Maths Variables
+
+Study-child questionnaire:
+cq3b11c: Compared to other people your age, how well would you say you do/did in tests in exams in Mathematics, 1 Above average 2 Just above average 3 Average 4 Just below average 5 Below average 6 Don't/didn't do
+
+Tests:
+CognitiveMathsTotal: Cognitive test-Maths Score
+
+## SDQ Variables
+Respondent (about the study child): Variable name
+
+Primary caregiver: w3pcg_SDQemotional, w3pcg_SDQconduct, w3pcg_SDQhyper, w3pcg_SDQpeerprobs
+Secondary caregiver: w3scg_SDQemotional, w3scg_SDQconduct, w3scg_SDQhyper, w3scg_SDQpeerprobs
+
+
