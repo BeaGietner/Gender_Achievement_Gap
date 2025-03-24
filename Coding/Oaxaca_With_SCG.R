@@ -7,6 +7,7 @@ Oaxaca_with_SCG <- production_data %>%
     DEIS_binary_W2, Fee_paying_W2, Mixed  # School indicators (if needed later)
   )
 
+dplyr::count(Merged_Child,FE1)
 
 Oaxaca_with_SCG <- Oaxaca_with_SCG %>% 
 mutate(
@@ -16,6 +17,9 @@ mutate(
   SDQ_peer_PCG_W2 = 10 - SDQ_peer_PCG_W2
 )
 
+dplyr::count(production_data,PCG_Educ_W2)
+
+summary(production_data$Maths_points)
 # Dummy for male
 Oaxaca_with_SCG <- Oaxaca_with_SCG %>%
   mutate(gender_binary = if_else(Gender_factor == "Male", 1, 0))
@@ -47,6 +51,8 @@ Oaxaca_with_SCG <- Oaxaca_with_SCG %>%
     SCG_Educ_W1 = FE1,
     Income_equi_quint_W1 = EIncQuin
   )
+
+dplyr::count(Merged_Child,MMM6)
 
 Oaxaca_with_SCG <- Oaxaca_with_SCG %>%
   mutate(
@@ -165,5 +171,111 @@ english_model_spline <- lm(
 
 summary(maths_model_spline)
 summary(english_model_spline)
+
+
+# Using LOGIT scores
+
+# Load necessary package
+library(dplyr)
+
+
+Oaxaca_with_SCG <- Oaxaca_with_SCG %>%
+  inner_join(Merged_Child %>% select(ID, readingls, mathsls, 
+                                     vrls, 
+                                     nals,
+                                     totls), by = "ID")
+
+Oaxaca_with_SCG <- Oaxaca_with_SCG %>% 
+  rename(
+    Cog_Reading_W1_l = readingls,
+    Cog_Maths_W1_l = mathsls,
+    Drum_VR_W2_l = vrls, 
+    Drum_NA_W2_l = nals,
+    Drum_Total_W2_l = totls
+  )
+
+Oaxaca_without_SCG <- Oaxaca_without_SCG %>%
+  inner_join(Merged_Child %>% select(ID, readingls, mathsls, 
+                                     vrls, 
+                                     nals,
+                                     totls), by = "ID")
+
+Oaxaca_without_SCG <- Oaxaca_without_SCG %>% 
+  rename(
+    Cog_Reading_W1_l = readingls,
+    Cog_Maths_W1_l = mathsls,
+    Drum_VR_W2_l = vrls, 
+    Drum_NA_W2_l = nals,
+    Drum_Total_W2_l = totls
+  )
+
+summary(Oaxaca_without_SCG)
+write.csv(Oaxaca_with_SCG, "Oaxaca_with_SCG.csv", row.names = FALSE)
+write.csv(Oaxaca_without_SCG, "Oaxaca_without_SCG.csv", row.names = FALSE)
+
+Original_Logits <- Merged_Child %>% 
+  select(ID, readingls, mathsls, vrls, nals, totls)
+
+# Check summary of the original logit scores
+summary(Original_Logits)
+# Replace incorrect 999 values with NA in the logit scores
+Merged_Child <- Merged_Child %>%
+  mutate(
+    vrls = ifelse(vrls == 999, NA, vrls),
+    nals = ifelse(nals == 999, NA, nals),
+    totls = ifelse(totls == 999, NA, totls)
+  )
+
+
+hist(Merged_Child$vrls)
+
+# Remove existing columns before merging again
+Oaxaca_with_SCG <- Oaxaca_with_SCG %>%
+  select(-Cog_Reading_W1_l, -Cog_Maths_W1_l, 
+         -Drum_VR_W2_l, -Drum_NA_W2_l, -Drum_Total_W2_l)
+
+# Now merge cleaned logit scores from Merged_Child
+Oaxaca_with_SCG <- Oaxaca_with_SCG %>%
+  inner_join(Merged_Child %>% select(ID, readingls, mathsls, 
+                                     vrls, nals, totls), by = "ID")
+
+# Rename variables correctly
+Oaxaca_with_SCG <- Oaxaca_with_SCG %>% 
+  rename(
+    Cog_Reading_W1_l = readingls,
+    Cog_Maths_W1_l = mathsls,
+    Drum_VR_W2_l = vrls, 
+    Drum_NA_W2_l = nals,
+    Drum_Total_W2_l = totls
+  )
+
+# Check if renaming worked
+names(Oaxaca_with_SCG)
+
+
+# Remove all added logit score variables before re-adding
+Oaxaca_without_SCG <- Oaxaca_without_SCG %>%
+  select(-readingls.x, -mathsls.x, -vrls.x, -nals.x, -totls.x,
+         -readingls.y, -mathsls.y, -vrls.y, -nals.y, -totls.y,
+         -Cog_Reading_W1_l, -Cog_Maths_W1_l, 
+         -Drum_VR_W2_l, -Drum_NA_W2_l, -Drum_Total_W2_l)
+
+# Check if they are removed
+names(Oaxaca_without_SCG)
+
+
+
+# Define the columns to remove
+cols_to_remove <- c("readingls.x", "mathsls.x", "vrls.x", "nals.x", "totls.x",
+                    "readingls.y", "mathsls.y", "vrls.y", "nals.y", "totls.y")
+
+# Remove these columns from Oaxaca_with_SCG
+Oaxaca_with_SCG <- Oaxaca_with_SCG %>%
+  select(-all_of(cols_to_remove))
+
+# Check if the columns are successfully removed
+names(Oaxaca_with_SCG)
+
+
 
 

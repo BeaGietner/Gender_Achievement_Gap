@@ -5,6 +5,8 @@ library(rpart)
 library(randomForest)
 library(rpart.plot)
 
+
+
 rm(ml_data)
 # 1. First, let's prepare our data with standardized variables
 ml_data <- production_data %>%
@@ -338,3 +340,7 @@ ggplot(english_importance, aes(x = factor(Income_Quintile), y = MDA, fill = Vari
   labs(title = "Variable Importance in English Achievement by Income Quintile",
        x = "Income Quintile", y = "Mean Decrease in Accuracy") +
   theme_minimal()
+
+
+
+summary(production_data, width = Inf)

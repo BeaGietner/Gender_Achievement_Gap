@@ -1,64 +1,3 @@
-Oaxaca_without_SCG <- production_data %>%
-  select(
-    ID, Maths_points, English_points, Gender_factor,  # Outcomes & Demographics
-    Drum_VR_W2_p, Drum_NA_W2_p, BAS_TS_Mat_W2,  # Cognitive (raw)
-    SDQ_emot_PCG_W2, SDQ_cond_PCG_W2, SDQ_hyper_PCG_W2, SDQ_peer_PCG_W2,  # Noncognitive (raw)
-    PCG_Educ_W2, Income_equi_quint,  # Socioeconomic (raw)
-    DEIS_binary_W2, Fee_paying_W2, Mixed  # School indicators (if needed later)
-  )
-
-
-Oaxaca_without_SCG <- Oaxaca_without_SCG %>% 
-  mutate(
-    SDQ_emot_PCG_W2 = 10 - SDQ_emot_PCG_W2,
-    SDQ_cond_PCG_W2 = 10 -  SDQ_cond_PCG_W2,
-    SDQ_hyper_PCG_W2 = 10 - SDQ_hyper_PCG_W2,
-    SDQ_peer_PCG_W2 = 10 - SDQ_peer_PCG_W2
-  )
-
-# Dummy for male
-Oaxaca_without_SCG <- Oaxaca_without_SCG %>%
-  mutate(gender_binary = if_else(Gender_factor == "Male", 1, 0))
-
-# Creating dummies for education
-Oaxaca_without_SCG <- Oaxaca_without_SCG %>%
-  mutate(
-    PCG_Educ_W2_Dummy34 = if_else(PCG_Educ_W2 %in% c(3, 4), 1, 0),
-    PCG_Educ_W2_Dummy56 = if_else(PCG_Educ_W2 %in% c(5, 6), 1, 0)
-  )
-
-Oaxaca_without_SCG <- Oaxaca_without_SCG %>%
-  inner_join(Merged_Child %>% select(ID, readpct,mathpct,
-                                     MMH2_SDQemot,MMH2_SDQcond,MMH2_SDQhyper,MMH2_SDQpeer,
-                                     MML37,
-                                     EIncQuin), by = "ID")
-
-Oaxaca_without_SCG <- Oaxaca_without_SCG %>% 
-  rename(
-    Cog_Reading_W1 = readpct,
-    Cog_Maths_W1 = mathpct,
-    SDQ_emot_PCG_W1 = MMH2_SDQemot, 
-    SDQ_cond_PCG_W1 = MMH2_SDQcond,
-    SDQ_hyper_PCG_W1 = MMH2_SDQhyper,
-    SDQ_peer_PCG_W1 = MMH2_SDQpeer,
-    PCG_Educ_W1 = MML37,
-    Income_equi_quint_W1 = EIncQuin
-  )
-
-Oaxaca_without_SCG <- Oaxaca_without_SCG %>%
-  mutate(
-    PCG_Educ_W1_Dummy34 = if_else(PCG_Educ_W1 %in% c(3, 4), 1, 0),
-    PCG_Educ_W1_Dummy56 = if_else(PCG_Educ_W1 %in% c(5, 6), 1, 0)
-  )
-
-Oaxaca_without_SCG <- na.omit(Oaxaca_without_SCG)
-# 2. Let's check missing values
-missing_summary <- sapply(Oaxaca_without_SCG, function(x) sum(is.na(x)))
-print("Missing values per variable:")
-print(missing_summary)
-
-write.csv(Oaxaca_without_SCG, "Oaxaca_without_SCG.csv", row.names = FALSE)
-
 # Load necessary library
 library(lmtest)
 
@@ -624,6 +563,169 @@ for (i in 1:nrow(comparison_table)) {
 
 
 
-write.csv(Oaxaca_full, "Oaxaca_full.csv", row.names = FALSE)
-write.csv(sample_both_parents, "sample_both_parents.csv", row.names = FALSE)
-write.csv(sample_only_mother, "sample_only_mother.csv", row.names = FALSE)
+
+
+
+library(dplyr)
+library(tidyr)
+
+# Define samples
+sample_only_mother_female <- Oaxaca_full %>%
+  filter(Gender_factor == "Female", is.na(SCG_Educ_W2) & SCG_Status_W2 == 0)
+
+sample_only_mother_male <- Oaxaca_full %>%
+  filter(Gender_factor == "Male", is.na(SCG_Educ_W2) & SCG_Status_W2 == 0)
+
+sample_both_parents_female <- Oaxaca_full %>%
+  filter(Gender_factor == "Female", !is.na(SCG_Educ_W2) & !is.na(PCG_Educ_W2))
+
+sample_both_parents_male <- Oaxaca_full %>%
+  filter(Gender_factor == "Male", !is.na(SCG_Educ_W2) & !is.na(PCG_Educ_W2))
+
+# Create comparison table
+comparison_table_gender <- data.frame(
+  Variable = c("Mean Maths Score", "Mean English Score", 
+               "Mean Income Quintile", 
+               "Fee-Paying Enrollment (%)", "DEIS Enrollment (%)", "Mixed-Sex School (%)",
+               "PCG Education (Level 3-4) (%)", "PCG Education (Level 5-6) (%)"),
+  
+  Female_Only_Mother = c(
+    mean(sample_only_mother_female$Maths_points, na.rm = TRUE),
+    mean(sample_only_mother_female$English_points, na.rm = TRUE),
+    mean(sample_only_mother_female$Income_equi_quint, na.rm = TRUE),
+    mean(sample_only_mother_female$Fee_paying_W2, na.rm = TRUE) * 100,
+    mean(sample_only_mother_female$DEIS_binary_W2, na.rm = TRUE) * 100,
+    mean(sample_only_mother_female$Mixed, na.rm = TRUE) * 100,
+    mean(sample_only_mother_female$PCG_Educ_W2_Dummy34, na.rm = TRUE) * 100,
+    mean(sample_only_mother_female$PCG_Educ_W2_Dummy56, na.rm = TRUE) * 100
+  ),
+  
+  Female_Both_Parents = c(
+    mean(sample_both_parents_female$Maths_points, na.rm = TRUE),
+    mean(sample_both_parents_female$English_points, na.rm = TRUE),
+    mean(sample_both_parents_female$Income_equi_quint, na.rm = TRUE),
+    mean(sample_both_parents_female$Fee_paying_W2, na.rm = TRUE) * 100,
+    mean(sample_both_parents_female$DEIS_binary_W2, na.rm = TRUE) * 100,
+    mean(sample_both_parents_female$Mixed, na.rm = TRUE) * 100,
+    mean(sample_both_parents_female$PCG_Educ_W2_Dummy34, na.rm = TRUE) * 100,
+    mean(sample_both_parents_female$PCG_Educ_W2_Dummy56, na.rm = TRUE) * 100
+  ),
+  
+  Male_Only_Mother = c(
+    mean(sample_only_mother_male$Maths_points, na.rm = TRUE),
+    mean(sample_only_mother_male$English_points, na.rm = TRUE),
+    mean(sample_only_mother_male$Income_equi_quint, na.rm = TRUE),
+    mean(sample_only_mother_male$Fee_paying_W2, na.rm = TRUE) * 100,
+    mean(sample_only_mother_male$DEIS_binary_W2, na.rm = TRUE) * 100,
+    mean(sample_only_mother_male$Mixed, na.rm = TRUE) * 100,
+    mean(sample_only_mother_male$PCG_Educ_W2_Dummy34, na.rm = TRUE) * 100,
+    mean(sample_only_mother_male$PCG_Educ_W2_Dummy56, na.rm = TRUE) * 100
+  ),
+  
+  Male_Both_Parents = c(
+    mean(sample_both_parents_male$Maths_points, na.rm = TRUE),
+    mean(sample_both_parents_male$English_points, na.rm = TRUE),
+    mean(sample_both_parents_male$Income_equi_quint, na.rm = TRUE),
+    mean(sample_both_parents_male$Fee_paying_W2, na.rm = TRUE) * 100,
+    mean(sample_both_parents_male$DEIS_binary_W2, na.rm = TRUE) * 100,
+    mean(sample_both_parents_male$Mixed, na.rm = TRUE) * 100,
+    mean(sample_both_parents_male$PCG_Educ_W2_Dummy34, na.rm = TRUE) * 100,
+    mean(sample_both_parents_male$PCG_Educ_W2_Dummy56, na.rm = TRUE) * 100
+  )
+)
+
+# Perform t-tests for continuous variables by gender
+p_values_gender <- c(
+  t.test(sample_only_mother_female$Maths_points, sample_both_parents_female$Maths_points, var.equal = FALSE)$p.value,
+  t.test(sample_only_mother_female$English_points, sample_both_parents_female$English_points, var.equal = FALSE)$p.value,
+  t.test(sample_only_mother_female$Income_equi_quint, sample_both_parents_female$Income_equi_quint, var.equal = FALSE)$p.value,
+  
+  t.test(sample_only_mother_male$Maths_points, sample_both_parents_male$Maths_points, var.equal = FALSE)$p.value,
+  t.test(sample_only_mother_male$English_points, sample_both_parents_male$English_points, var.equal = FALSE)$p.value,
+  t.test(sample_only_mother_male$Income_equi_quint, sample_both_parents_male$Income_equi_quint, var.equal = FALSE)$p.value
+)
+
+# Create a full-length vector for p-values, adding NA for categorical variables
+p_values_female <- c(
+  p_values_gender[1:3],  # Maths, English, Income
+  rep(NA, 5)  # No p-values for categorical variables
+)
+
+p_values_male <- c(
+  p_values_gender[4:6],  # Maths, English, Income
+  rep(NA, 5)  # No p-values for categorical variables
+)
+
+# Add p-values to the table
+comparison_table_gender$p_value_female <- p_values_female
+comparison_table_gender$p_value_male <- p_values_male
+
+# Print results
+print(comparison_table_gender)
+
+
+# Print detailed summary
+for (i in 1:nrow(comparison_table_gender)) {
+  cat(comparison_table_gender$Variable[i], 
+      "\nFemale Only Mother:", comparison_table_gender$Female_Only_Mother[i], 
+      "\nFemale Both Parents:", comparison_table_gender$Female_Both_Parents[i], 
+      "\nMale Only Mother:", comparison_table_gender$Male_Only_Mother[i], 
+      "\nMale Both Parents:", comparison_table_gender$Male_Both_Parents[i], 
+      "\nP-value (Female):", comparison_table_gender$p_value_female[i], 
+      "\nP-value (Male):", comparison_table_gender$p_value_male[i], "\n\n")
+}
+
+
+library(dplyr)
+library(tidyr)
+
+# Create a combined dataset for chi-square tests (Female)
+comparison_data_female <- Oaxaca_full %>%
+  filter(Gender_factor == "Female") %>%
+  mutate(group = case_when(
+    is.na(SCG_Educ_W2) & SCG_Status_W2 == 0 ~ "Only Mother",
+    !is.na(SCG_Educ_W2) & !is.na(PCG_Educ_W2) ~ "Both Parents",
+    TRUE ~ NA_character_
+  )) %>%
+  filter(!is.na(group))  # Keep only the two relevant groups
+
+# Create a combined dataset for chi-square tests (Male)
+comparison_data_male <- Oaxaca_full %>%
+  filter(Gender_factor == "Male") %>%
+  mutate(group = case_when(
+    is.na(SCG_Educ_W2) & SCG_Status_W2 == 0 ~ "Only Mother",
+    !is.na(SCG_Educ_W2) & !is.na(PCG_Educ_W2) ~ "Both Parents",
+    TRUE ~ NA_character_
+  )) %>%
+  filter(!is.na(group))  # Keep only the two relevant groups
+
+# Perform chi-square tests for categorical variables (Female)
+p_value_female_fee <- chisq.test(table(comparison_data_female$group, comparison_data_female$Fee_paying_W2))$p.value
+p_value_female_deis <- chisq.test(table(comparison_data_female$group, comparison_data_female$DEIS_binary_W2))$p.value
+p_value_female_mixed <- chisq.test(table(comparison_data_female$group, comparison_data_female$Mixed))$p.value
+p_value_female_educ34 <- chisq.test(table(comparison_data_female$group, comparison_data_female$PCG_Educ_W2_Dummy34))$p.value
+p_value_female_educ56 <- chisq.test(table(comparison_data_female$group, comparison_data_female$PCG_Educ_W2_Dummy56))$p.value
+
+# Perform chi-square tests for categorical variables (Male)
+p_value_male_fee <- chisq.test(table(comparison_data_male$group, comparison_data_male$Fee_paying_W2))$p.value
+p_value_male_deis <- chisq.test(table(comparison_data_male$group, comparison_data_male$DEIS_binary_W2))$p.value
+p_value_male_mixed <- chisq.test(table(comparison_data_male$group, comparison_data_male$Mixed))$p.value
+p_value_male_educ34 <- chisq.test(table(comparison_data_male$group, comparison_data_male$PCG_Educ_W2_Dummy34))$p.value
+p_value_male_educ56 <- chisq.test(table(comparison_data_male$group, comparison_data_male$PCG_Educ_W2_Dummy56))$p.value
+
+# Update the comparison table with chi-square p-values
+comparison_table_gender$p_value_female <- c(
+  p_values_gender[1:3],  # Maths, English, Income
+  p_value_female_fee, p_value_female_deis, p_value_female_mixed, 
+  p_value_female_educ34, p_value_female_educ56  # Categorical chi-square p-values
+)
+
+comparison_table_gender$p_value_male <- c(
+  p_values_gender[4:6],  # Maths, English, Income
+  p_value_male_fee, p_value_male_deis, p_value_male_mixed, 
+  p_value_male_educ34, p_value_male_educ56  # Categorical chi-square p-values
+)
+
+# Print results
+print(comparison_table_gender)
+
