@@ -1,82 +1,3 @@
-# Load necessary library
-library(lmtest)
-
-# Run regression for Maths Points
-maths_model <- lm(Maths_points ~ Cog_Maths_W1 + Drum_NA_W2_p + 
-                    PCG_Educ_W1 + PCG_Educ_W2 + 
-                    SDQ_emot_PCG_W1 + SDQ_hyper_PCG_W1 + SDQ_cond_PCG_W1 + SDQ_peer_PCG_W1 +
-                    SDQ_emot_PCG_W2 + SDQ_hyper_PCG_W2 + SDQ_cond_PCG_W2 + SDQ_peer_PCG_W2 +
-                    Income_equi_quint_W1 + Income_equi_quint, data = Oaxaca_without_SCG)
-
-summary(maths_model)
-
-# Run regression for English Points
-english_model <- lm(English_points ~ Cog_Reading_W1 + Drum_VR_W2_p + 
-                      PCG_Educ_W1 + PCG_Educ_W2 + 
-                      SDQ_emot_PCG_W1 + SDQ_hyper_PCG_W1 + SDQ_cond_PCG_W1 + SDQ_peer_PCG_W1 +
-                      SDQ_emot_PCG_W2 + SDQ_hyper_PCG_W2 + SDQ_cond_PCG_W2 + SDQ_peer_PCG_W2 +
-                      Income_equi_quint_W1 + Income_equi_quint, data = Oaxaca_without_SCG)
-
-summary(english_model)
-
-
-# Create change variables
-Oaxaca_without_SCG$maths_change <- Oaxaca_without_SCG$Drum_NA_W2_p - Oaxaca_without_SCG$Cog_Maths_W1
-Oaxaca_without_SCG$reading_change <- Oaxaca_without_SCG$Drum_VR_W2_p - Oaxaca_without_SCG$Cog_Reading_W1
-
-# Compare means by gender
-maths_change_by_gender <- tapply(Oaxaca_without_SCG$maths_change, Oaxaca_without_SCG$gender_binary, mean, na.rm = TRUE)
-reading_change_by_gender <- tapply(Oaxaca_without_SCG$reading_change, Oaxaca_without_SCG$gender_binary, mean, na.rm = TRUE)
-
-# Print results
-cat("Average Maths Growth: Boys =", maths_change_by_gender[2], "Girls =", maths_change_by_gender[1], "\n")
-cat("Average Reading Growth: Boys =", reading_change_by_gender[2], "Girls =", reading_change_by_gender[1], "\n")
-
-# Standardizing cognitive ability variables
-Oaxaca_without_SCG <- Oaxaca_without_SCG %>%
-  mutate(
-    Cog_Maths_W1_z = scale(Cog_Maths_W1),
-    Drum_NA_W2_p_z = scale(Drum_NA_W2_p),
-    Cog_Reading_W1_z = scale(Cog_Reading_W1),
-    Drum_VR_W2_p_z = scale(Drum_VR_W2_p)
-  )
-
-maths_model_z <- lm(Maths_points ~ Cog_Maths_W1_z + Drum_NA_W2_p_z + 
-                      PCG_Educ_W1 + PCG_Educ_W2 + 
-                      SDQ_emot_PCG_W1 + SDQ_hyper_PCG_W1 + SDQ_cond_PCG_W1 + SDQ_peer_PCG_W1 +
-                      SDQ_emot_PCG_W2 + SDQ_hyper_PCG_W2 + SDQ_cond_PCG_W2 + SDQ_peer_PCG_W2 +
-                      Income_equi_quint_W1 + Income_equi_quint, 
-                    data = Oaxaca_without_SCG)
-
-english_model_z <- lm(English_points ~ Cog_Reading_W1_z + Drum_VR_W2_p_z + 
-                        PCG_Educ_W1 + PCG_Educ_W2 + 
-                        SDQ_emot_PCG_W1 + SDQ_hyper_PCG_W1 + SDQ_cond_PCG_W1 + SDQ_peer_PCG_W1 +
-                        SDQ_emot_PCG_W2 + SDQ_hyper_PCG_W2 + SDQ_cond_PCG_W2 + SDQ_peer_PCG_W2 +
-                        Income_equi_quint_W1 + Income_equi_quint, 
-                      data = Oaxaca_without_SCG)
-
-summary(maths_model_z)
-summary(english_model_z)
-
-
-# Maths Model with Gender
-maths_model_gender <- lm(Maths_points ~ gender_binary + Cog_Maths_W1_z + Drum_NA_W2_p_z + 
-                           PCG_Educ_W1 + PCG_Educ_W2 + 
-                           SDQ_emot_PCG_W1 + SDQ_hyper_PCG_W1 + SDQ_cond_PCG_W1 + SDQ_peer_PCG_W1 +
-                           SDQ_emot_PCG_W2 + SDQ_hyper_PCG_W2 + SDQ_cond_PCG_W2 + SDQ_peer_PCG_W2 +
-                           Income_equi_quint_W1 + Income_equi_quint, 
-                         data = Oaxaca_without_SCG)
-
-# English Model with Gender
-english_model_gender <- lm(English_points ~ gender_binary + Cog_Reading_W1_z + Drum_VR_W2_p_z + 
-                             PCG_Educ_W1 + PCG_Educ_W2 + 
-                             SDQ_emot_PCG_W1 + SDQ_hyper_PCG_W1 + SDQ_cond_PCG_W1 + SDQ_peer_PCG_W1 +
-                             SDQ_emot_PCG_W2 + SDQ_hyper_PCG_W2 + SDQ_cond_PCG_W2 + SDQ_peer_PCG_W2 +
-                             Income_equi_quint_W1 + Income_equi_quint, 
-                           data = Oaxaca_without_SCG)
-summary(maths_model_gender)
-summary(english_model_gender)
-
 library(splines)
 
 maths_model_spline <- lm(
@@ -99,51 +20,6 @@ english_model_spline <- lm(
 
 summary(maths_model_spline)
 summary(english_model_spline)
-
-t.test(Oaxaca_without_SCG$Maths_points, Oaxaca_with_SCG$Maths_points)
-t.test(Oaxaca_without_SCG$Income_equi_quint, Oaxaca_with_SCG$Income_equi_quint)
-
-ks.test(Oaxaca_without_SCG$Maths_points, Oaxaca_with_SCG$Maths_points)
-
-wilcox.test(Oaxaca_without_SCG$Maths_points, Oaxaca_with_SCG$Maths_points)
-
-library(ggplot2)
-
-ggplot() +
-  geom_density(aes(x = Oaxaca_without_SCG$Maths_points, fill = "Without Father's Education"), alpha = 0.4) +
-  geom_density(aes(x = Oaxaca_with_SCG$Maths_points, fill = "With Father's Education"), alpha = 0.4) +
-  scale_fill_manual(values = c("Without Father's Education" = "blue", "With Father's Education" = "red")) +
-  labs(title = "Density of Maths Scores", x = "Maths Score", y = "Density", fill = "Sample") +
-  theme_minimal()
-
-
-t.test(Oaxaca_full$Maths_points[is.na(Oaxaca_full$SCG_Educ_W2)], 
-       Oaxaca_full$Maths_points[!is.na(Oaxaca_full$SCG_Educ_W2)])
-
-t.test(Oaxaca_full$English_points[is.na(Oaxaca_full$SCG_Educ_W2)], 
-       Oaxaca_full$English_points[!is.na(Oaxaca_full$SCG_Educ_W2)])
-
-
-t.test(Oaxaca_full$Income_equi_quint[is.na(Oaxaca_full$SCG_Educ_W2)], 
-       Oaxaca_full$Income_equi_quint[!is.na(Oaxaca_full$SCG_Educ_W2)])
-
-
-chisq.test(table(is.na(Oaxaca_full$SCG_Educ_W2), Oaxaca_full$Fee_paying_W2))
-chisq.test(table(is.na(Oaxaca_full$SCG_Educ_W2), Oaxaca_full$DEIS_binary_W2))
-chisq.test(table(is.na(Oaxaca_full$SCG_Educ_W2), Oaxaca_full$Mixed))
-
-
-chisq.test(table(is.na(Oaxaca_full$SCG_Educ_W2), Oaxaca_full$PCG_Educ_W2_Dummy34))
-chisq.test(table(is.na(Oaxaca_full$SCG_Educ_W2), Oaxaca_full$PCG_Educ_W2_Dummy56))
-
-Oaxaca_full <- Oaxaca_without_SCG %>%
-  left_join(Oaxaca_with_SCG %>% select(ID, SCG_Educ_W1, SCG_Educ_W1_Dummy34,
-                                       SCG_Educ_W1_Dummy56, SCG_Educ_W2,
-                                       SCG_Educ_W2_Dummy34,SCG_Educ_W2_Dummy56), by = "ID")
-
-
-
-
 
 library(dplyr)
 
@@ -729,3 +605,66 @@ comparison_table_gender$p_value_male <- c(
 # Print results
 print(comparison_table_gender)
 
+
+
+library(dplyr)
+# Create a dataset from Merged_Child with the partner/SCG information
+scg_status_dataset <- Merged_Child_3 %>%
+  select(ID, 
+         # Wave 1 variables
+         Partner, scgmain, 
+         # Wave 2 variables  
+         w2partner, w2scgmain) %>%
+  mutate(
+    w1_absence_type = case_when(
+      Partner == 0 ~ "No partner in household",
+      Partner == 1 & scgmain == 1 ~ "Partner present but did not complete questionnaire",
+      Partner == 1 & scgmain == 2 ~ "Partner present and completed questionnaire",
+      TRUE ~ "Missing data"
+    ),
+    w2_absence_type = case_when(
+      w2partner == 0 ~ "No partner in household",
+      w2partner == 1 & w2scgmain == 1 ~ "Partner present but did not complete questionnaire",
+      w2partner == 1 & w2scgmain == 2 ~ "Partner present and completed questionnaire",
+      TRUE ~ "Missing data"
+    )
+  )
+
+# Take your existing father_absent_status from selected_data
+father_status_dataset <- selected_data %>%
+  select(ID, father_absent_status, Father_Educ_Missing_W1, Father_Educ_Missing_W2)
+
+# Join them to create your complete analysis dataset
+combined_father_dataset <- scg_status_dataset %>%
+  left_join(father_status_dataset, by = "ID")
+
+# Now analyze the relationships
+absence_analysis <- combined_father_dataset %>%
+  # Filter to only include records where we have father_absent_status data
+  filter(!is.na(father_absent_status)) %>%
+  # Count the relationships
+  group_by(father_absent_status, w1_absence_type, w2_absence_type) %>%
+  summarize(count = n()) %>%
+  ungroup() %>%
+  # Add percentages
+  group_by(father_absent_status) %>%
+  mutate(percentage = count / sum(count) * 100)
+
+# Print the results
+print(absence_analysis, windth = Inf)
+# Wave 1 analysis
+w1_analysis <- combined_father_dataset %>%
+  filter(!is.na(father_absent_status)) %>%
+  count(father_absent_status, w1_absence_type) %>%
+  group_by(father_absent_status) %>%
+  mutate(percentage = n / sum(n) * 100)
+
+# Wave 2 analysis
+w2_analysis <- combined_father_dataset %>%
+  filter(!is.na(father_absent_status)) %>%
+  count(father_absent_status, w2_absence_type) %>%
+  group_by(father_absent_status) %>%
+  mutate(percentage = n / sum(n) * 100)
+
+print(w1_analysis)
+print(w2_analysis)
