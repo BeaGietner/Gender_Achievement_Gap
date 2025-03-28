@@ -337,4 +337,3 @@ selected_data <- selected_data %>%
 
 # Check the structure to confirm changes
 str(selected_data)
-
