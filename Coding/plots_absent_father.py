@@ -361,6 +361,7 @@ plt.show()
 
 
 
+# PAPER PLOTS IN ORDER
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -498,133 +499,6 @@ annotation_text = (f"Mean Maths Points:\n"
 
 ax.text(1.5, ax.get_ylim()[0] + 0.05, annotation_text, fontsize=10, 
         bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
-
-plt.tight_layout()
-plt.show()
-
-
-import matplotlib.pyplot as plt
-import numpy as np
-
-# Data for the sample WITHOUT the father (from table)
-variables_without_father = [
-    "Reading Ability (C)",
-    "Maths Ability (E)",
-    "Maths Ability (C)",
-    "Maths Ability (I)",
-    "Conduct Problems (E)",
-    "Hyperactivity (E)",
-    "PCG Education 5-6 (E)"
-]
-estimates_without_father = [
-    0.027,         # Reading Ability (C)
-    -0.116,        # Maths Ability (E)
-    0.050,         # Maths Ability (C)
-    0.020,         # Maths Ability (I)
-    0.012,         # Conduct Problems (E)
-    0.043,         # Hyperactivity (E)
-    -0.033         # PCG Education 5-6 (E)
-]
-# Calculate confidence intervals from standard errors
-std_errors_without_father = [
-    0.016,         # Reading Ability (C)
-    0.020,         # Maths Ability (E)
-    0.026,         # Maths Ability (C)
-    0.011,         # Maths Ability (I)
-    0.005,         # Conduct Problems (E)
-    0.010,         # Hyperactivity (E)
-    0.015          # PCG Education 5-6 (E)
-]
-# Confidence intervals at 95% level (approximating from 1.96 * SE)
-ci_lower_without_father = [
-    est - 1.96 * se for est, se in zip(estimates_without_father, std_errors_without_father)
-]
-ci_upper_without_father = [
-    est + 1.96 * se for est, se in zip(estimates_without_father, std_errors_without_father)
-]
-significance_without_father = ["*", "***", "*", "*", "**", "***", "**"]
-
-# Data for the sample WITH the father
-variables_with_father = [
-    "Reading Ability (C)",
-    "Maths Ability (E)",
-    "Maths Ability (C)",
-    "Maths Ability (I)",
-    "Conduct Problems (E)",
-    "Hyperactivity (E)",
-    "PCG Education 5-6 (E)",
-    "SCG Education 5-6 (E)",
-    "Mixed School (C)",
-    "Mixed School (I)"
-]
-estimates_with_father = [
-    0.033,         # Reading Ability (C)
-    -0.104,        # Maths Ability (E)
-    0.047,         # Maths Ability (C)
-    0.019,         # Maths Ability (I)
-    0.014,         # Conduct Problems (E)
-    0.046,         # Hyperactivity (E)
-    -0.023,        # PCG Education 5-6 (E)
-    -0.028,        # SCG Education 5-6 (E)
-    0.141,         # Mixed School (C)
-    0.023          # Mixed School (I)
-]
-std_errors_with_father = [
-    0.017,         # Reading Ability (C)
-    0.020,         # Maths Ability (E)
-    0.025,         # Maths Ability (C)
-    0.011,         # Maths Ability (I)
-    0.006,         # Conduct Problems (E)
-    0.010,         # Hyperactivity (E)
-    0.012,         # PCG Education 5-6 (E)
-    0.010,         # SCG Education 5-6 (E)
-    0.078,         # Mixed School (C)
-    0.013          # Mixed School (I)
-]
-# Confidence intervals at 95% level
-ci_lower_with_father = [
-    est - 1.96 * se for est, se in zip(estimates_with_father, std_errors_with_father)
-]
-ci_upper_with_father = [
-    est + 1.96 * se for est, se in zip(estimates_with_father, std_errors_with_father)
-]
-significance_with_father = ["**", "***", "*", "*", "**", "***", "*", "***", "*", "*"]
-
-# Combine both sets of data
-variables = variables_without_father + variables_with_father
-estimates = estimates_without_father + estimates_with_father
-ci_lower = ci_lower_without_father + ci_lower_with_father
-ci_upper = ci_upper_without_father + ci_upper_with_father
-significance = significance_without_father + significance_with_father
-
-# Convert lists to NumPy arrays
-y_pos = np.arange(len(variables))
-errors = [np.array(estimates) - np.array(ci_lower), np.array(ci_upper) - np.array(estimates)]
-
-# Define split index for separating sections
-split_index = len(variables_without_father)
-
-# Plot
-fig, ax = plt.subplots(figsize=(12, 10))
-ax.errorbar(estimates, y_pos, xerr=errors, fmt='o', color='b', capsize=5, label="Estimate ± 95% CI")
-ax.axvline(x=0, color='gray', linestyle='--', alpha=0.7)
-ax.axhline(y=split_index - 0.5, color='black', linestyle='-', linewidth=1)
-ax.set_yticks(y_pos)
-ax.set_yticklabels(variables)
-ax.set_xlabel("Estimate")
-
-# Categorize variables with labels (E=Endowments, C=Coefficients, I=Interaction)
-ax.set_title("Significant Oaxaca-Blinder Decomposition Estimates (Girls - Boys) - Wave 1\nE=Endowments, C=Coefficients, I=Interaction")
-ax.invert_yaxis()
-
-# Add section labels in the top right
-ax.text(ax.get_xlim()[1] - 0.01, split_index - 0.75, "Excluding Father's Education", fontsize=12, fontweight='bold', ha='right')
-ax.text(ax.get_xlim()[1] - 0.01, split_index + 0.75, "Including Father's Education", fontsize=12, fontweight='bold', ha='right')
-
-# Add significance markers
-for i, (est, sig) in enumerate(zip(estimates, significance)):
-    ax.text(est + (0.02 if est >= 0 else -0.02), i, sig, fontsize=12, verticalalignment='center', 
-            color='red', horizontalalignment='left' if est >= 0 else 'right')
 
 plt.tight_layout()
 plt.show()
@@ -857,6 +731,8 @@ for i, (est, sig) in enumerate(zip(estimates, significance)):
 
 plt.tight_layout()
 plt.show()
+
+
 
 import matplotlib.pyplot as plt
 import numpy as np
