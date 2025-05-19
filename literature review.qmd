@@ -1,0 +1,191 @@
+---
+title: "Literature Review Notes: Research Papers by Theme"
+author: "Beatriz"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    number-sections: false
+    theme: cosmo
+  docx:
+    toc: true
+    toc-depth: 2
+    fig-width: 8
+    fig-height: 6
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: false
+    colorlinks: true
+    geometry:
+      - margin=1in
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Introduction {.unnumbered}
+
+This document organizes 72 papers into thematic categories and provides space for recording highlights, methodology notes, and personal insights for each paper.
+
+# Gender Differences in Education and Labor Markets
+
+## Mathematics and STEM Performance
+
+| Paper | Key Findings | Methodology | My Notes |
+|-------|-------------|-------------|----------|
+| Card, D., & Payne, A. A. (2021). High School Choices And The Gender Gap In STEM. *Economic Inquiry*, 59(1), 9–28. | Course selection in high school contributes to gender gaps in STEM | | |
+| Cimpian, J. R., et al. (2016). Have Gender Gaps in Math Closed? *AERA Open*, 2(4), 1–19. | Comparison of gender gaps across ECLS-K cohorts | | |
+| Fryer, R. G., & Levitt, S. D. (2010). An Empirical Analysis of the Gender Gap in Mathematics. *American Economic Journal: Applied Economics*, 2(2), 210–240. | No gender gap at school entry; develops in early elementary school | | |
+| Hyde, J. S., & Mertz, J. E. (2009). Gender, Culture, and Mathematics Performance. *PNAS*, 106(22), 8801–8807. | Gender gaps in math related to cultural and social factors | | |
+| Lindberg, S. M., et al. (2010). New Trends in Gender and Mathematics Performance: A Meta-Analysis. *Psychological Bulletin*, 136(6), 1123–1135. | Meta-analysis of gender differences in mathematics performance | | |
+
+## Teacher Influence and Bias
+
+| Paper | Key Findings | Methodology | My Notes |
+|-------|-------------|-------------|----------|
+| Carlana, M. (2019). Implicit Stereotypes: Evidence from Teachers' Gender Bias. *The Quarterly Journal of Economics*, 134(3), 1163–1224. | Teachers' implicit biases affect students' performance and choices | | |
+| Lavy, V., & Sand, E. (2018). On the Origins of Gender Gaps in Human Capital: Short and Long-Term Consequences of Teachers' Biases. *Journal of Public Economics*, 167, 263–279. | Long-term effects of teacher gender bias on educational attainment | | |
+
+## Gender and Labor Market Outcomes
+
+| Paper | Key Findings | Methodology | My Notes |
+|-------|-------------|-------------|----------|
+| Autor, D., et al. (2019). Family Disadvantage and the Gender Gap in Behavioral and Educational Outcomes. *American Economic Journal: Applied Economics*, 11(3), 338–381. | Boys are more adversely affected by family disadvantage than girls | | |
+| Bertrand, M., & Pan, J. (2013). The Trouble with Boys: Social Influences and the Gender Gap in Disruptive Behavior. *American Economic Journal: Applied Economics*, 5(1), 32–64. | Boys' behavior problems more influenced by family environment than girls' | | |
+| Blau, F. D., & Kahn, L. M. (2000). Gender Differences in Pay. *Journal of Economic Perspectives*, 14(4), 75–99. | Overview of factors explaining gender wage differentials | | |
+| Blinder, A. S. (1973). Wage Discrimination: Reduced Form and Structural Estimates. *Journal of Human Resources*, 8(4), 436–455. | Introduced decomposition method for analyzing wage discrimination | | |
+| Ceci, S. J., & Williams, W. M. (2014). Women's Underrepresentation in Science: Sociocultural and Biological Considerations. *Psychological Bulletin*, 140(5), 1120–1168. | Reviews evidence on biological and sociocultural factors in STEM gender gaps | | |
+| Mincer, J., & Polachek, S. (1974). Family Investments in Human Capital: Earnings of Women. *Journal of Political Economy*, 82(2), S76–S108. | Family investment patterns help explain gender earnings differences | | |
+| Oaxaca, R. (1973). Male-Female Wage Differentials in Urban Labor Markets. *International Economic Review*, 14(3), 693–709. | Introduced methodology for analyzing wage discrimination by gender | | |
+| Whitcomb, K. M., et al. (2020). A Mismatch Between Self-efficacy and Performance: Undergraduate Women in Engineering. arXiv preprint. | Women in engineering have lower self-efficacy despite higher grades | | |
+| Xie, Y., & Shauman, K. A. (2003). Women in Science: Career Processes and Outcomes. Harvard University Press. | Examines women's career trajectories in science | | |
+| Zajac, T., et al. (2025). Gender Pay Gaps Across STEM Fields of Study. *Studies in Higher Education*, 50(1), 126–139. | Analysis of gender pay gaps across STEM disciplines | | |
+
+# Family Structure and Child Development
+
+## Parental Influence
+
+| Paper | Key Findings | Methodology | My Notes |
+|-------|-------------|-------------|----------|
+| Baker, M., & Milligan, K. (2016). Boy-Girl Differences in Parental Time Investments: Evidence from Three Countries. *Journal of Human Capital*, 10(4), 399–441. | Parents invest differently in boys vs. girls across different countries | | |
+| Bowlby, J. (2008). A Secure Base: Parent-Child Attachment and Healthy Human Development. Basic Books. | Parent-child attachment is foundation for healthy development | | |
+| Brenøe, A. A., & Lundberg, S. (2018). Gender Gaps in the Effects of Childhood Family Environment: Do They Persist into Adulthood? *European Economic Review*, 109, 42–62. | Childhood environment effects on gender gaps persist into adulthood | | |
+| Downey, D. B. (1995). When bigger is not better: Family size, parental resources, and children's educational performance. *American Sociological Review*, 60(5), 746–761. | Resource dilution in larger families affects children's educational outcomes | | |
+| Endendijk, J. J., et al. (2016). Gender-Differentiated Parenting Revisited: Meta-Analysis Reveals Very Few Differences in Parental Control of Boys and Girls. *PLoS One*, 11(7), e0159193. | Few differences in parenting of boys vs. girls despite stereotypes | | |
+| Sarkadi, A., et al. (2008). Fathers' Involvement and Children's Developmental Outcomes: A Systematic Review of Longitudinal Studies. *Acta Paediatrica*, 97(2), 153–158. | Father involvement positively affects children's development | | |
+| Yeung, W. J., et al. (2002). How Money Matters for Young Children's Development: Parental Investment and Family Processes. *Child development*, 73(6), 1861–1879. | Economic resources affect child development through parenting and materials | | |
+
+## Family Structure Effects
+
+| Paper | Key Findings | Methodology | My Notes |
+|-------|-------------|-------------|----------|
+| Amato, P. R. (2005). The Impact of Family Formation Change on the Cognitive, Social, and Emotional Well-Being of the Next Generation. *The Future of Children*, 75–96. | Changes in family structure affect children's well-being through multiple pathways | | |
+| Augustine, J. M. (2014). Maternal Education and the Unequal Significance of Family Structure for Children's Early Achievement. *Social Forces*, 93(2), 687–718. | Maternal education moderates the effects of family structure on child achievement | | |
+| Carlson, M. J., & Corcoran, M. E. (2001). Family Structure and Children's Behavioral and Cognitive Outcomes. *Journal of Marriage and Family*, 63(3), 779–792. | Family structure affects behavioral and cognitive outcomes through multiple pathways | | |
+| Fomby, P., & Cherlin, A. J. (2007). Family Instability and Child Well-Being. *American Sociological Review*, 72(2), 181–204. | Family instability negatively affects child well-being | | |
+| Lee, D., & McLanahan, S. (2015). Family Structure Transitions and Child Development: Instability, Selection, and Population Heterogeneity. *American Sociological Review*, 80(4), 738–763. | Family transitions affect child development through multiple mechanisms | | |
+| Lundberg, S. (2017). Father Absence and the Educational Gender Gap. *IZA Discussion Paper No. 10814*. | Father absence contributes to educational gender gap | | |
+| McLanahan, S., & Sandefur, G. (2009). Growing up with a single parent: What hurts, what helps. Harvard University Press. | Single parenthood affects children through economic and parenting pathways | | |
+| McLanahan, S., Tach, L., & Schneider, D. (2013). The Causal Effects of Father Absence. *Annual Review of Sociology*, 39, 399–427. | Father absence has causal negative effects on multiple child outcomes | | |
+
+# Cognitive Development and Brain Science
+
+| Paper | Key Findings | Methodology | My Notes |
+|-------|-------------|-------------|----------|
+| Ansari, D. (2008). Effects of Development and Enculturation on Number Representation in the Brain. *Nature Reviews Neuroscience*, 9(4), 278–291. | Cultural learning shapes neural representation of numbers | | |
+| Blair, C., & Razza, R. P. (2007). Relating effortful control, executive function, and false belief understanding to emerging math and literacy ability in kindergarten. *Child Development*, 78(2), 647–663. | Executive function related to early academic abilities in kindergarten | | |
+| Casey, B. J., et al. (2005). Imaging the Developing Brain: What Have We Learned About Cognitive Development? *Trends in Cognitive Sciences*, 9(3), 104–110. | Brain development continues through adolescence with implications for behavior | | |
+| Deary, I. J., et al. (2007). Intelligence and Educational Achievement. *Intelligence*, 35(1), 13–21. | Intelligence strongly predicts educational achievement | | |
+| Dehaene, S. (2011). The Number Sense: How the Mind Creates Mathematics. Oxford University Press. | Mathematical cognition has evolutionary and neural bases | | |
+| Duncan, G. J., et al. (2007). School Readiness and Later Achievement. *Developmental Psychology*, 43(6), 1428–1446. | Early academic skills predict later achievement | | |
+| Knudsen, E. I., et al. (2006). Economic, Neurobiological, and Behavioral Perspectives on Building America's Future Workforce. *PNAS*, 103(27), 10155–10162. | Early investments in human capital most effective | | |
+| Luna, B., et al. (2010). What Has fMRI Told Us About the Development of Cognitive Control Through Adolescence? *Brain and Cognition*, 72(1), 101–113. | Cognitive control develops into early adulthood | | |
+| Lupien, S. J., et al. (2009). Effects of Stress Throughout the Lifespan on the Brain, Behaviour and Cognition. *Nature Reviews Neuroscience*, 10(6), 434–445. | Stress affects brain development with timing-specific effects | | |
+| Shonkoff, J. P., et al. (2012). The Lifelong Effects of Early Childhood Adversity and Toxic Stress. *Pediatrics*, 129(1), e232–e246. | Toxic stress disrupts brain architecture with lifelong consequences | | |
+
+# Socioeconomic Status and Educational Achievement
+
+| Paper | Key Findings | Methodology | My Notes |
+|-------|-------------|-------------|----------|
+| Bradley, R. H., & Corwyn, R. F. (2002). Socioeconomic Status and Child Development. *Annual Review of Psychology*, 53(1), 371–399. | SES affects child development through multiple direct and indirect pathways | | |
+| Caro, D. H., et al. (2009). Socio-Economic Status and Academic Achievement Trajectories from Childhood to Adolescence. *Canadian Journal of Education*, 32(3), 558–590. | SES affects academic trajectories from childhood through adolescence | | |
+| Chetty, R., et al. (2020). Income Segregation And Intergenerational Mobility Across Colleges In The United States. *The Quarterly Journal of Economics*, 135(3), 1567–1633. | Family income affects college attendance and upward mobility | | |
+| Evans, G. W., & Schamberg, M. A. (2009). Childhood poverty, chronic stress, and adult working memory. *PNAS*, 106(16), 6545–6549. | Childhood poverty affects adult working memory through stress pathways | | |
+| Sirin, S. R. (2005). Socioeconomic Status and Academic Achievement: A Meta-Analytic Review of Research. *Review of Educational Research*, 75(3), 417–453. | Meta-analysis of socioeconomic effects on academic achievement | | |
+| Watts, T. W., et al. (2014). Achievement Gaps in the United States: Race, Poverty, and Interactions Over Ten Years. *The Journal of Educational Research*, 108(1), 17–26. | Achievement gaps by race and SES persist over time | | |
+
+# Non-Cognitive Skills and Academic Success
+
+| Paper | Key Findings | Methodology | My Notes |
+|-------|-------------|-------------|----------|
+| Alan, S., & Ertac, S. (2018). Fostering Patience in the Classroom: Results from a Randomized Educational Intervention. *Journal of Political Economy*, 126(5), 1865–1911. | Educational intervention improves patience in children with effects on academic outcomes | | |
+| Bandura, A., et al. (1996). Multifaceted Impact of Self-Efficacy Beliefs on Academic Functioning. *Child Development*, 67(3), 1206–1222. | Self-efficacy beliefs affect academic motivation, interest, and achievement | | |
+| Duckworth, A. L., & Seligman, M. E. (2005). Self-Discipline Outdoes IQ in Predicting Academic Performance of Adolescents. *Psychological Science*, 16(12), 939–944. | Self-discipline predicts academic performance better than IQ | | |
+| Durlak, J. A., et al. (2011). The impact of enhancing students' social and emotional learning: A meta-analysis of school-based universal interventions. *Child Development*, 82(1), 405–432. | SEL interventions improve academic outcomes and social-emotional skills | | |
+| Masten, A. S., et al. (2005). Developmental Cascades: Linking Academic Achievement and Externalizing and Internalizing Symptoms Over 20 Years. *Developmental Psychology*, 41(5), 733–746. | Academic and behavioral problems linked in developmental cascades | | |
+| McClelland, M. M., et al. (2007). Links between behavioral regulation and preschoolers' literacy, vocabulary, and math skills. *Developmental Psychology*, 43(4), 947–959. | Behavioral regulation linked to early academic skills | | |
+| Raver, C. C. (2002). Emotions matter: Making the case for the role of young children's emotional development for early schooling success. *Social Policy Report*, 16(3), 1–20. | Emotional development fundamental to early academic success | | |
+| Yeager, D. S., et al. (2019). A National Experiment Reveals Where a Growth Mindset Improves Achievement. *Nature*, 573(7774), 364–369. | Growth mindset intervention improves academic achievement | | |
+
+# Economic Models of Human Capital
+
+| Paper | Key Findings | Methodology | My Notes |
+|-------|-------------|-------------|----------|
+| Becker, G. S. (1964). Human Capital: A Theoretical and Empirical Analysis, with Special Reference to Education. University of Chicago Press. | Framework for analyzing education as investment in human capital | | |
+| Black, S. E., & Devereux, P. J. (2011). Recent developments in intergenerational mobility. *Handbook of Labor Economics*, 4B, 1487–1541. | Review of recent research on intergenerational educational and income mobility | | |
+| Card, D. (1999). The Causal Effect of Education on Earnings. *Handbook of Labor Economics*, 3, 1801–1863. | Reviews causal evidence on returns to education | | |
+| Cunha, F., & Heckman, J. (2007). The Technology of Skill Formation. *American Economic Review*, 97(2), 31–47. | Skill formation model with dynamic complementarities and critical periods | | |
+| DiNardo, J., et al. (1996). Labor Market Institutions and the Distribution of Wages, 1973-1992: A Semiparametric Approach. *Econometrica*, 64(5), 1001–1044. | Semi-parametric approach to wage decomposition | | |
+| Heckman, J. J. (2006). Skill Formation and the Economics of Investing in Disadvantaged Children. *Science*, 312(5782), 1900–1902. | Early childhood is critical period for skill development interventions | | |
+| Heckman, J. J., et al. (2006). The Effects of Cognitive and Noncognitive Abilities on Labor Market Outcomes and Social Behavior. *Journal of Labor Economics*, 24(3), 411–482. | Non-cognitive skills affect labor market and social outcomes | | |
+| Hsieh, C.-T., et al. (2019). The Allocation Of Talent And U.S. Economic Growth. *Econometrica*, 87(5), 1439–1474. | Reduced discrimination and improved talent allocation increases growth | | |
+
+# Cultural and Environmental Influences
+
+| Paper | Key Findings | Methodology | My Notes |
+|-------|-------------|-------------|----------|
+| Eccles, J. S., et al. (1990). Gender role stereotypes, expectancy effects, and parents' socialization of gender differences. *Journal of Social Issues*, 46(2), 183–201. | Parents' gender stereotypes affect children's skill development | | |
+| Eccles, J. S., & Roeser, R. W. (2011). Schools as Developmental Contexts During Adolescence. *Journal of Research on Adolescence*, 21(1), 225–241. | Schools provide important developmental context during adolescence | | |
+| Guiso, L., et al. (2008). Culture, Gender, and Math. *Science*, 320(5880), 1164–1165. | Cross-country variation in math gender gaps related to gender equality | | |
+| Legewie, J., & DiPrete, T. A. (2014). The High School Environment and the Gender Gap in Science and Engineering. *Sociology of Education*, 87(4), 259–280. | School environment affects gender gap in science and engineering | | |
+| Nollenberger, N., et al. (2016). The Math Gender Gap: The Role of Culture. *American Economic Review*, 106(5), 257–61. | Cross-country evidence on cultural influences on math gender gaps | | |
+| Penner, A. M. (2008). Gender Differences in Extreme Mathematical Achievement: An International Perspective on Biological and Social Factors. *American Journal of Sociology*, 114(S1), S138–S170. | Gender differences in math achievement vary internationally | | |
+| Pianta, R. C., & Stuhlman, M. W. (2004). Teacher–child relationships and children's success in the first years of school. *School Psychology Review*, 33(3), 444–458. | Teacher-child relationships predict academic success | | |
+| Spencer, S. J., et al. (1999). Stereotype Threat and Women's Math Performance. *Journal of Experimental Social Psychology*, 35(1), 4–28. | Stereotype threat negatively affects women's math performance | | |
+
+# Theme Connections and Research Questions
+
+Use this section to document emerging research questions and connections between papers across different categories.
+
+## Key Cross-Theme Questions
+
+1. 
+
+2. 
+
+3. 
+
+## Connections Between Themes
+
+| Connection | Related Papers | Notes |
+|------------|---------------|-------|
+| SES and gender interactions | | |
+| Cognitive and non-cognitive skills | | |
+| Family structure and educational outcomes | | |
+| Cultural influences on development | | |
+
+# Reading Priority Plan
+
+Use this table to organize your reading schedule and priorities.
+
+| Priority | Paper | Theme | Deadline | Status |
+|----------|-------|-------|----------|--------|
+| 1 | | | | |
+| 2 | | | | |
+| 3 | | | | |
+| 4 | | | | |
+| 5 | | | | |

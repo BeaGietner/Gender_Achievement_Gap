@@ -31,6 +31,8 @@
 # How many girls enrolled: p2q4b
 
 # Wave 3
+# PCG highest level of education: pc3f1educ
+# SCG highest level of education: sc3e1educ
 # Gender YP: p2sexW3
 # Grades in Maths and English according to the level: cq3b32a, cq3b32b, cq3b33a, cq3b33b
 
@@ -506,7 +508,7 @@ write.csv(complete_case_subset, "complete_case_subset.csv", row.names = FALSE)
 # library(haven)
 # write_dta(complete_case_subset, "complete_case_subset.dta")
 
-
+names(decomposition_dataset)
 
 # Load libraries
 library(tidyverse)
@@ -518,6 +520,7 @@ library(xtable)
 # ---------------------
 # Variable groups
 # ---------------------
+names(selected_data)
 parental_educ_vars <- c("PCG_Educ_W1", "SCG_Educ_W1", "PCG_Educ_W2", "SCG_Educ_W2")
 income_vars        <- c("Income_equi_quint_W1", "Income_equi_quint_W2")
 cognitive_vars     <- c("Cog_Reading_W1_l", "Cog_Maths_W1_l", "Drum_NA_W2_l", "Drum_VR_W2_l", 
@@ -525,7 +528,7 @@ cognitive_vars     <- c("Cog_Reading_W1_l", "Cog_Maths_W1_l", "Drum_NA_W2_l", "D
 sdq_vars           <- c("SDQ_emot_PCG_W1", "SDQ_cond_PCG_W1", "SDQ_hyper_PCG_W1", "SDQ_peer_PCG_W1",
                         "SDQ_emot_PCG_W2", "SDQ_cond_PCG_W2", "SDQ_hyper_PCG_W2", "SDQ_peer_PCG_W2")
 school_vars        <- c("Fee_paying_W2", "DEIS_W2", "religious_school_w2", "mixed_school_w1", "mixed_school_w2")
-outcome_vars       <- c("English_points_W3", "Maths_points_W3", "Maths_LC_Points", "English_LC_Points")
+outcome_vars       <- c("English_points_W3", "Maths_points_W3", "Maths_LC_Points", "English_LC_Points", )
 
 all_vars <- c(parental_educ_vars, income_vars, cognitive_vars, sdq_vars, school_vars, outcome_vars)
 
@@ -616,3 +619,24 @@ gender_latex <- gender_compare_table %>%
   kable(format = "latex", booktabs = TRUE, caption = "Gender Comparison of Educational Outcomes")
 
 cat(gender_latex, file = "gender_comparison.tex")
+
+
+# adding new educ variables from wave 3:
+wave3_educ <- Merged_Child_all_observ %>%
+  select(ID,
+         PCG_Educ_W3 = pc3f1educ,
+         SCG_Educ_W3 = sc3e1educ) %>%
+  mutate(
+    PCG_Educ_W3_Dummy34 = if_else(is.na(PCG_Educ_W3), NA_integer_, if_else(PCG_Educ_W3 %in% c(3, 4), 1, 0)),
+    PCG_Educ_W3_Dummy56 = if_else(is.na(PCG_Educ_W3), NA_integer_, if_else(PCG_Educ_W3 %in% c(5, 6), 1, 0)),
+    SCG_Educ_W3_Dummy34 = if_else(is.na(SCG_Educ_W3), NA_integer_, if_else(SCG_Educ_W3 %in% c(3, 4), 1, 0)),
+    SCG_Educ_W3_Dummy56 = if_else(is.na(SCG_Educ_W3), NA_integer_, if_else(SCG_Educ_W3 %in% c(5, 6), 1, 0))
+  )
+
+decomposition_dataset_W3 <- decomposition_dataset %>%
+  left_join(wave3_educ, by = "ID")
+
+decomposition_dataset_W3 <- decomposition_dataset_W3 %>%
+  mutate(Father_Educ_Missing_W3 = if_else(is.na(SCG_Educ_W3), 1, 0))
+
+

@@ -131,7 +131,7 @@ plt.axhline(0, color='black', linewidth=0.8)
 # Labels and styling
 plt.xlabel("Decomposition Components", fontsize=AXIS_LABEL_FONTSIZE, labelpad=XLABEL_PAD)
 plt.ylabel("Estimated Contribution to Maths Points (Girls - Boys)", fontsize=AXIS_LABEL_FONTSIZE)
-plt.title("Oaxaca Decomposition: Gender Gap in Mathematics Achievement", fontsize=TITLE_FONTSIZE, pad=TITLE_PAD)
+plt.title("Oaxaca Decomposition: Gender Gap in Maths Achievement", fontsize=TITLE_FONTSIZE, pad=TITLE_PAD)
 plt.xticks(x, categories, fontsize=TICK_FONTSIZE)
 plt.ylim(-6, 2)
 
@@ -160,7 +160,7 @@ legend = plt.legend(
 
 # Add text for statistical significance explanation
 plt.figtext(0.15, 0.01, "Significance: *** p≤0.01, ** p≤0.05, * p≤0.1", 
-            fontsize=10, ha="left")
+            fontsize=10, ha="center")
 
 plt.tight_layout()
 plt.subplots_adjust(bottom=0.15)
@@ -243,7 +243,7 @@ add_significance_stars(bar4, girls_w2_stars, girls_wave2_errs)
 plt.axhline(0, color='black', linewidth=0.8)
 plt.xlabel("Decomposition Components", fontsize=AXIS_LABEL_FONTSIZE, labelpad=XLABEL_PAD)
 plt.ylabel("Estimated Contribution to Maths Points\n(Father Present – Father Absent)", fontsize=AXIS_LABEL_FONTSIZE)
-plt.title("Oaxaca Decomposition: Impact of Father Presence by Gender", fontsize=TITLE_FONTSIZE, pad=TITLE_PAD)
+plt.title("Oaxaca Decomposition: Impact of Father Presence on Maths Achievement by Gender ", fontsize=TITLE_FONTSIZE, pad=TITLE_PAD)
 plt.xticks(x, categories, fontsize=TICK_FONTSIZE)
 plt.ylim(-2, 12)
 
@@ -272,7 +272,7 @@ legend = plt.legend(
 
 # Add text for statistical significance explanation
 plt.figtext(0.15, 0.01, "Significance: *** p≤0.01, ** p≤0.05, * p≤0.1", 
-            fontsize=10, ha="left")
+            fontsize=10, ha="center")
 
 plt.tight_layout()
 plt.subplots_adjust(bottom=0.15)
